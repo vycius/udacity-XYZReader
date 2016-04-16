@@ -1,5 +1,6 @@
 package com.example.xyzreader.ui;
 
+import android.app.ActivityOptions;
 import android.app.LoaderManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -133,8 +134,18 @@ public class ArticleListActivity extends AppCompatActivity implements
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
+                    ActivityOptions opts = ActivityOptions.makeScaleUpAnimation(
+                            // the source view from which to animate the new Activity
+                            // defines the co-ordinate space for initial (x, y) location
+                            view,
+                            // starting (x, y) position for animation
+                            // NOTE: these co-ordinates are relative to the source view above
+                            0, 0,
+                            // initial width and height of the new Activity
+                            view.getWidth(), view.getHeight());
+                    startActivity(intent, opts.toBundle());
                 }
             });
             return vh;
