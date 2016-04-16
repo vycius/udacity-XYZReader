@@ -86,8 +86,8 @@ public class ArticleDetailFragment extends Fragment implements
         toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
         getActivityCast().setSupportActionBar(toolbar);
+        getActivityCast().getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        ActionBar actionBar = getActivityCast().getSupportActionBar();
 
         // In support library r8, calling initLoader for a fragment in a FragmentPagerAdapter in
         // the fragment's onCreate may cause the same LoaderManager to be dealt to multiple
